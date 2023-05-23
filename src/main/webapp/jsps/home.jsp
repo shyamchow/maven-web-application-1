@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1 align="center">Welcome to Mithun Software Solutions Github-PollSCM Demo.</h1>
-<h1 align="center"> Mithun Software Solutions- Very Good Training center for DevOps with AWS in Maratha Halli Bangalore India by Bhakar sir and also  Job Assitance and Job Support also...Teaching Real Time scenarios</h1>
+<h1 align="center"> Mithun Software Solutions- Very Good Training center for DevOps with AWS in Maratha Halli Bangalore India by Bhaskar sir and also  Job Assitance and Job Support also...Teaching Real Time scenarios</h1>
 <hr>
 <br>
 	<h1><h3> Server Side IP Address </h3><br>
