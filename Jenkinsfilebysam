@@ -31,7 +31,7 @@ sh "${mavenHome}/bin/mvn deploy"
 
 stage('DeployAppIntoTomcatServer'){
 sshagent(['2bb74020-0a66-466d-b394-4c2d79226fee']) {
-   sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@43.205.254.107:/opt/apache-tomcat-9.0.75/webapps"
+   sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@15.206.79.40:/opt/apache-tomcat-9.0.75/webapps"
 }
 }
 
@@ -50,7 +50,7 @@ slacknotification(currentBuild.result)
 
 }//node closing
 
-/*
+
 def slacknotifications(String buildStatus = 'STARTED') {
   // build status of null means successful
   buildStatus =  buildStatus ?: 'SUCCESSFUL'
@@ -76,4 +76,4 @@ def slacknotifications(String buildStatus = 'STARTED') {
   // Send notifications
   slackSend (color: colorCode, message: summary)
 }
-*/
+
