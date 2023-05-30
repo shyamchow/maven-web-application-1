@@ -9,10 +9,8 @@ echo "The job name is: ${env.JOB_NAME}"
 echo "The node name is; ${env.NODE_NAME}"
 
 //All the stages are placed in the try block
+
 try{
-
-
-
 stage('CheckoutCode'){
 git credentialsId: '100f29b0-98e5-4a57-b3cb-c1eb1761c930', url: 'https://github.com/shyamchow/maven-web-application-1.git'
 }
@@ -48,7 +46,7 @@ throw e
 // Irrespective of success and failure build status is passed into  finally block
 finally {
 slacknotification(currentBuild.result)
-  }
+}
 
 }//node closing
 
