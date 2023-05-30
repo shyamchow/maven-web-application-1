@@ -1,5 +1,4 @@
-#Scripted-way pipeline
-node
+node('nodes')
 {
 
 def mavenHome = tool name: "maven 3.8.6"
@@ -10,8 +9,9 @@ echo "The job name is: ${env.JOB_NAME}"
 echo "The node name is; ${env.NODE_NAME}"
 
 //All the stages are placed in the try block
-
 try{
+slacknotifications("STARTED")
+
 stage('CheckoutCode'){
 git credentialsId: '100f29b0-98e5-4a57-b3cb-c1eb1761c930', url: 'https://github.com/shyamchow/maven-web-application-1.git'
 }
@@ -20,7 +20,7 @@ stage('Build'){
 sh "${mavenHome}/bin/mvn clean package"
 }
 
-
+/*
 stage('ExecuteSonarQubeReport'){
 sh "${mavenHome}/bin/mvn sonar:sonar"
 }
@@ -32,9 +32,10 @@ sh "${mavenHome}/bin/mvn deploy"
 
 stage('DeployAppIntoTomcatServer'){
 sshagent(['2bb74020-0a66-466d-b394-4c2d79226fee']) {
-   sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@15.206.79.40:/opt/apache-tomcat-9.0.75/webapps"
+   sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@43.205.254.107:/opt/apache-tomcat-9.0.75/webapps"
 }
 }
+*/
 
 }
 
@@ -47,7 +48,7 @@ throw e
 // Irrespective of success and failure build status is passed into  finally block
 finally {
 slacknotification(currentBuild.result)
-}
+  }
 
 }//node closing
 
@@ -77,4 +78,3 @@ def slacknotifications(String buildStatus = 'STARTED') {
   // Send notifications
   slackSend (color: colorCode, message: summary)
 }
-
